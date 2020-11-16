@@ -30,8 +30,9 @@ export default {
         DetailSwiper,
         DetailBaseInfo,
         DetailShopInfo,
-        Scroll,
         DetailGoodsInfo,
+        Scroll,
+        
         DetailParamInfo      
     },
     data() {
@@ -66,8 +67,7 @@ export default {
 
             //5.获取参数信息
             this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
-            
-        })
+        }) 
     },
 
     methods: {
@@ -78,7 +78,6 @@ export default {
 
 }
 </script>
-
 <style scoped>
     #detail {
         position: relative;
