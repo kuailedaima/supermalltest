@@ -12,6 +12,7 @@
         </scroll>
         <detail-bottom-bar @addCart="addToCart"/>
         <back-top @click.native="backClick" v-show="isshowBackTop"/>
+        <!-- <toast message="成功" :show=""/> -->
     </div>
 </template>
 
@@ -28,10 +29,12 @@ import DetailBottomBar from './childComps/DetailBottomBar'
 import Scroll from 'components/common/scroll/Scroll'
 import GoodsList from 'components/content/goods/GoodsList'
 import BackTop from 'components/content/backTop/BackTop'
+// import Toast from 'components/common/toast/Toast'
 
 import {getDetail,Goods,Shop,GoodsParam,getRecommend} from "../../network/detail"
 import {debounce} from "../../common/utils"
 import {itemListenerMixin} from "../../common/mixin"
+import {mapActions} from 'vuex'
 
 export default {
     name:"Detail",
@@ -121,6 +124,7 @@ export default {
     },
 
     methods: {
+        ...mapActions(['addCart']),
         imageLoad(){
             // this.$refs.scroll.refresh()
             this.getThemeTopY()
@@ -169,8 +173,19 @@ export default {
 
          //2.添加商品到购物车
         //  this.$store.commit('addCart',product)
-        this.$store.dispatch('addCart',product)
-           console.log(product);
+        // this.$store.dispatch('addCart',product).then(res =>{
+        //     console.log(res);
+            
+        // })
+        //console.log(product);
+        this.addCart(product).then(res => {
+            this.$toast.show(res,2000)
+            console.log(this.$toast);
+            
+        })
+
+        //3.添加购物车成功
+
          
      }
 

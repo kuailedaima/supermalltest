@@ -11,21 +11,23 @@
     </scroll>
 
     <!-- 底部汇总 -->
+    <cart-bottom-bar/>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar';
 import CartList from './childComps/CartList'
-// import Scroll from 'components/common/scroll/Scroll'
+import Scroll from 'components/common/scroll/Scroll'
+import CartBottomBar from './childComps/CartBottomBar'
 
 import {mapGetters} from 'vuex'
-import Scroll from '../../components/common/scroll/Scroll.vue';
 export default {
   components:{
     NavBar,
     CartList,
-    Scroll
+    Scroll,
+    CartBottomBar
   },
 
   computed:{
@@ -63,5 +65,6 @@ export default {
     left: 0;
     right: 0;
     }
+    
 
 </style>

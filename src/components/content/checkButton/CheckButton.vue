@@ -8,7 +8,7 @@
 export default {
   props:{
     isChecked:{
-      tupe:Boolean,
+      type:Boolean,
       default:false
     }
   }
