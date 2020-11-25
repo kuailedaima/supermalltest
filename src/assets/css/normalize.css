@@ -11,6 +11,7 @@
  html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
+    touch-action: pan-y/*解决vue移动端滑动点击报错*/;
   }
   
   /* Sections

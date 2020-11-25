@@ -10,7 +10,7 @@
       <div class="price">
           合计：{{totalPrice}}
       </div>
-      <div class="calculate">
+      <div class="calculate" @click="calcClick">
           去计算({{checkLength}})
         </div>
   </div>
@@ -62,6 +62,21 @@ export default {
                 this.$store.state.cartList.forEach(item => item.checked = true)
             }
             
+        },
+
+        //判断是否选中商品
+        calcClick(){
+            let i=0;
+            for(let item of this.$store.state.cartList) {
+                i++;
+                if(item.checked) {
+                    break;
+                }
+                if(i ==this.$store.state.cartList.length){
+                    this.$toast.show('请选择购买的商品',2000)
+                }
+            }
+            if(i == 0) this.$toast.show('购物车为空',2000)
         }
     }
                 
@@ -73,10 +88,10 @@ export default {
         line-height: 40px;
         right: 0px;
         left: 0px;
-        bottom: 49px;
+        bottom: 55px;
         height: 40px; 
         display: flex;
-        background-color:#eee;
+        background-color: #eee;
         position: fixed;
         font-size: 14px;
     }
