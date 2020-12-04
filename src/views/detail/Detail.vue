@@ -100,7 +100,7 @@ export default {
         //3.请求推荐数据
         getRecommend().then(res => {
             this.recommends = res.data.list
-            console.log(res.data.list);
+            // console.log(res.data.list);
             
         })
 
