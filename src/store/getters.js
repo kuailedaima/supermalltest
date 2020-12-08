@@ -5,5 +5,8 @@ export default {
     
     cartList(state) {
         return state.cartList
+    },
+    selectCartlist(state) {
+        return state.selectCartlist
     }
 }

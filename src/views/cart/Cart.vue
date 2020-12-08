@@ -3,6 +3,7 @@
     <!-- 导航 -->
     <nav-bar  class="nav-bar">
       <div slot="center">购物车({{length}})</div>
+      <div slot="right" id="right" @click="controlClick">{{control}}</div>
     </nav-bar>
 
     <!-- 商品的列表 -->
@@ -11,7 +12,7 @@
     </scroll>
 
     <!-- 底部汇总 -->
-    <cart-bottom-bar/>
+    <cart-bottom-bar :iscontrol="iscontrol"/>
   </div>
 </template>
 
@@ -30,6 +31,13 @@ export default {
     CartBottomBar
   },
 
+  data() {
+    return {
+      control:'编辑',
+      iscontrol:true
+    }
+  },
+
   computed:{
     //方法1
     // ...mapGetters(['cartLength','cartList'])
@@ -41,6 +49,16 @@ export default {
 
   activated(){
     this.$refs.scroll.refresh()
+  },
+
+  methods:{
+    controlClick(){
+      this.iscontrol = !this.iscontrol;
+      if(this.iscontrol) {
+        this.control = '编辑'
+      }
+      else this.control = '完成'
+    }
   }
 
 }
@@ -55,6 +73,12 @@ export default {
     background-color: var(--color-tint);
     color: #fff;
     /* font-weight: 700; */
+  }
+
+  #right {
+    font-size: 10px;
+    position: absolute;
+    top: 8px;
   }
 
   .content{

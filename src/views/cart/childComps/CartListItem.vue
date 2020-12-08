@@ -19,6 +19,7 @@
 
 <script>
 import CheckButton from 'components/content/checkButton/CheckButton'
+import {mapGetters} from 'vuex'
 export default {
     components:{
         CheckButton
@@ -31,9 +32,26 @@ export default {
             }
         }
     },
+    computed:{
+        ...mapGetters(['selectCartlist'])
+    },
     methods:{
+      //把取消选中的元素删除
+      remove(arr,val) {
+        for(var i=0; i<arr.length; i++) {
+        if(arr[i] == val) {
+          arr.splice(i, 1);
+          break;
+         }
+        }
+      },
+      
+      //选中商品并添加到selectCartlist中
       checkClick(){
         this.itemInfo.checked = !this.itemInfo.checked
+        if(this.itemInfo.checked) this.selectCartlist.push(this.itemInfo)
+        if(!this.itemInfo.checked) this.remove(this.selectCartlist,this.itemInfo)
+        // console.log(this.selectCartlist);
       },
 
       itemCartClick(){      

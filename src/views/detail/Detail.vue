@@ -181,7 +181,7 @@ export default {
         //console.log(product);
         this.addCart(product).then(res => {
             this.$toast.show(res,2000)
-            console.log(this.$toast);
+            // console.log(this.$toast);
             
         })
 
