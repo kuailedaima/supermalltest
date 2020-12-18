@@ -80,17 +80,14 @@ export default {
                 // console.log('全部取消');
             } else{
                 this.$store.state.cartList.forEach(item => item.checked = true)
-                // this.selectCartlist = this.cartList.splice(0,this.cartList.length)
+                this.selectCartlist.length = 0
                 for(let i=0;i<this.cartList.length;i++)
-                    this.selectCartlist[i] = this.cartList[i]
+                    this.selectCartlist.push(this.cartList[i])
                 // console.log('全部选中');
             }
-            // this.$store.state.cartList.splice(1, 1);
-            // console.log(this.$store.state.cartList);
-            
         },
 
-        //判断是否选中商品
+        //去计算时判断是否选中商品并决定是否跳转界面
         calcClick(){
             let i=0;
             for(let item of this.$store.state.cartList) {
@@ -103,6 +100,9 @@ export default {
                 }
             }
             if(i == 0) this.$toast.show('购物车为空',2000)
+            if(this.selectCartlist.length != 0) {
+                this.$router.push('/order')
+            }
         },
 
         //删除商品
@@ -122,7 +122,6 @@ export default {
                 this.remove(this.cartList,this.selectCartlist[j])
             }
             this.selectCartlist.length = 0
-            // console.log(this.selectCartlist);
         },
 
       //把取消选中的元素删除
@@ -144,7 +143,7 @@ export default {
         line-height: 40px;
         right: 0px;
         left: 0px;
-        bottom: 55px;
+        bottom: 49px;
         height: 40px; 
         display: flex;
         background-color: #eee;
