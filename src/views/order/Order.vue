@@ -6,9 +6,12 @@
           </div>
           <div slot="center">确认订单</div>
       </nav-bar>
-      <scroll class="content" ref="scroll">
+      <div class="scroll">
+        <scroll class="content" ref="scroll">
           <order-list/>
-      </scroll>
+        </scroll>
+      </div>
+      <order-bottom-bar/>
   </div>
 </template>
 
@@ -16,13 +19,15 @@
 import NavBar from 'components/common/navbar/NavBar';
 import Scroll from 'components/common/scroll/Scroll'
 import OrderList from './childComps/OrderList.vue';
+import OrderBottomBar from './childComps/OrderBottomBar.vue';
 import {mapGetters} from 'vuex'
 
 export default {
     components:{
         NavBar,
         Scroll,
-        OrderList
+        OrderList,
+        OrderBottomBar
     },
 
     computed:{

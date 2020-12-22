@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <div id="order-list-item">
-      <div class="item-img">
+  <div id="list-item">
+    <div id="order-list-item">
+    <div class="item-img">
       <img :src="itemInfo.image" alt="商品图片">
     </div>
     <div class="item-info">
@@ -13,8 +13,10 @@
       </div>
     </div>
   </div>
-  <div><after-pay/></div>
+    <after-pay :subcount="itemInfo.count" :subprice="itemInfo.price"/>
   </div>
+  
+      
 </template>
 
 <script>
@@ -36,6 +38,9 @@ export default {
 </script>
 
 <style scoped>
+  /* #list-item{
+    margin-bottom: 40px;
+  } */
   #order-list-item{
     width: 100%;
     display: flex;
