@@ -7,6 +7,8 @@ import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
 
 import toast from 'components/common/toast'
+import { AddressList } from 'vant';
+import { AddressEdit } from 'vant';
 
 Vue.config.productionTip = false
 
@@ -21,6 +23,12 @@ FastClick.attach(document.body)
 Vue.use(VueLazyLoad,{
   loading: require('./assets/img/common/placeholder.png')
 })
+
+//使用地址列表插件
+Vue.use(AddressList)
+
+//使用地址编辑插件
+Vue.use(AddressEdit);
 
 new Vue({
   render: h => h(App),

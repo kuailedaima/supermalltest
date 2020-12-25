@@ -1,6 +1,6 @@
 <template>
   <div class="normal-list">
-    <div v-for="(item, index) in listData" :key="index" class="item">
+    <div v-for="(item, index) in listData" :key="index" class="item" @click="click(index)">
         <span class="icon">
           <img :src="iconURL(item)" alt="">
         </span>
@@ -23,6 +23,10 @@
     methods: {
 			iconURL(item) {
 				return require('assets/img/profile/' + item.icon)
+      },
+
+      click(index){
+        if(index == 1) this.$router.push('/myaddress')
       }
     }
 	}

@@ -7,6 +7,9 @@ const Cart = () => import('../views/cart/Cart.vue')
 const Profile = () => import('../views/profile/Profile.vue') 
 const Detail = () => import('../views/detail/Detail.vue') 
 const Order = () => import('../views/order/Order.vue')
+const MyAddress = () => import('../views/profile/childComps/MyAddress.vue')
+const AddressControl = () => import('../views/profile/address/AddressControl.vue')
+const AddressEdit = () => import('../views/profile/address/AddressEdit.vue')
 
 //1.安装插件
 Vue.use(VueRouter)
@@ -40,6 +43,18 @@ const routes = [
       {
         path: '/order',
         component: Order
+      },
+      {
+        path: '/myaddress',
+        component: MyAddress
+      },
+      {
+        path: '/myaddress/addresscontrol',
+        component: AddressControl
+      },
+      {
+        path: '/myaddress/addressedit',
+        component: AddressEdit
       }
 
 ]

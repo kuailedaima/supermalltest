@@ -9,5 +9,15 @@ export default {
     
     selectCartlist(state) {
         return state.selectCartlist
+    },
+
+    addresslist(state) {
+        return state.addresslist
+    },
+    selectAddresslist(state) {
+        return state.selectAddresslist
+    },
+    id(state) {
+        return state.id
     }
 }
