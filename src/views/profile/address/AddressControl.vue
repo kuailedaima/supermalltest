@@ -51,6 +51,8 @@ export default {
   methods: {
     ...mapMutations(['saveAddress']),
     ...mapMutations(['idincrease']),
+    ...mapMutations(['altersDefault']),
+    ...mapMutations(['saveshippingaddress']),
     onSave(e) {
       Toast('save');
       let data = {};
@@ -66,7 +68,9 @@ export default {
       data.areaCode = e.areaCode;
       data.postalCode = e.postalCode;
       data.isDefault = e.isDefault;
+      if(data.isDefault == true) this.altersDefault()
       this.saveAddress(data)
+      this.saveshippingaddress()
       console.log(data);
       this.backClick()
     },

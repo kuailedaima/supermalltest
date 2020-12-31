@@ -7,6 +7,7 @@
   default-tag-text="默认"
   @add="onAdd"
   @edit="onEdit"
+  @select="onselect"
 />
   </div>
 </template>
@@ -49,11 +50,14 @@ export default {
 
 computed:{
       ...mapGetters(['addresslist']),
-      ...mapGetters(['selectAddresslist'])
+      ...mapGetters(['selectAddresslist']),
+      ...mapGetters(['isback'])
     },
 
   methods: {
     ...mapMutations(['alterAddress']),
+    ...mapMutations(['altershippingaddress']),
+    ...mapMutations(['alterisback']),
     onAdd() {
       Toast('新增地址');
       this.$router.push('/myaddress/addresscontrol')
@@ -66,6 +70,14 @@ computed:{
       this.selectAddresslist[2] = index
       this.$router.push('/myaddress/addressedit')
     },
+    onselect(item) {
+      if(this.isback == true){
+        this.alterisback()
+        this.altershippingaddress(item)
+        this.$router.back()
+      }
+      
+    }
   },
 };
 </script>

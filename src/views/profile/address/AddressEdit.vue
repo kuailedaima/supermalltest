@@ -55,6 +55,8 @@ export default {
     // ...mapMutations(['saveAddress']),
     // ...mapMutations(['updateAddress']),
     ...mapMutations(['delete']),
+    ...mapMutations(['altersDefault']),
+    ...mapMutations(['saveshippingaddress']),
     onSave(data) {
       Toast('save');
        let index = this.selectAddresslist[2]
@@ -67,8 +69,10 @@ export default {
        this.addresslist[index].addressDetail = data.addressDetail;
        this.addresslist[index].areaCode = data.areaCode;
        this.addresslist[index].postalCode = data.postalCode;
+       if(data.isDefault == true) this.altersDefault()
        this.addresslist[index].isDefault = data.isDefault;
        this.addresslist[index].address = data.province + data.city + data.county + data.addressDetail + "";
+       this.saveshippingaddress()
        this.$router.back()
     },
     onDelete() {

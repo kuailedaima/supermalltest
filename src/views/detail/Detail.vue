@@ -10,7 +10,7 @@
              <detail-comment-info :comment-info="commentInfo" ref="comment"/>
              <goods-list :goods="recommends" ref="recommend"/>
         </scroll>
-        <detail-bottom-bar @addCart="addToCart"/>
+        <detail-bottom-bar @addCart="addToCart" :onbuy="onbuy"/>
         <back-top @click.native="backClick" v-show="isshowBackTop"/>
         <!-- <toast message="成功" :show=""/> -->
     </div>
@@ -34,7 +34,7 @@ import BackTop from 'components/content/backTop/BackTop'
 import {getDetail,Goods,Shop,GoodsParam,getRecommend} from "../../network/detail"
 import {debounce} from "../../common/utils"
 import {itemListenerMixin} from "../../common/mixin"
-import {mapActions} from 'vuex'
+import {mapGetters,mapActions, mapMutations} from 'vuex'
 
 export default {
     name:"Detail",
@@ -52,6 +52,11 @@ export default {
         BackTop
         
     },
+
+    computed:{
+        ...mapGetters(['buygoods'])
+    },
+
     mixins:[itemListenerMixin],
     data() {
         return {
@@ -66,6 +71,7 @@ export default {
             themeTopYs:[],
             getThemeTopY:null,
             isshowBackTop:false,
+            // buygoods:[]
         }
     },
     created() {
@@ -126,6 +132,7 @@ export default {
 
     methods: {
         ...mapActions(['addCart']),
+        ...mapMutations(['alterbuygoods']),
         imageLoad(){
             // this.$refs.scroll.refresh()
             this.getThemeTopY()
@@ -188,6 +195,32 @@ export default {
         //3.添加购物车成功
 
          
+     },
+     //点击购买按钮
+     onbuy(){
+         //1.获取商品信息
+         const product = {}
+         const products = []
+         product.image = this.topImages[0];
+         product.title = this.goods.title;
+         product.desc = this.goods.desc;
+         product.price = this.goods.realPrice;
+         product.iid = this.iid;
+         product.count = 1
+
+         products.push(product)
+        //  this.buygoods = products
+         this.alterbuygoods(products)
+
+        //  this.buygoods[0] = product
+         console.log(products);
+         //跳转到确认订单界面
+         this.$router.push({
+            path: '/order',
+            query: {
+                selectcartlist: products
+            }
+        })
      }
 
     }

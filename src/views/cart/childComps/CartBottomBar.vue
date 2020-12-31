@@ -24,7 +24,7 @@
 
 <script>
 import CheckButton from 'components/content/checkButton/CheckButton'
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations} from 'vuex'
 
 export default {
      components:{
@@ -73,6 +73,7 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['alterbuygoods']),
         checkClick(){
             if(this.isSelectAll) {
                 this.$store.state.cartList.forEach(item => item.checked = false)
@@ -101,7 +102,14 @@ export default {
             }
             if(i == 0) this.$toast.show('购物车为空',2000)
             if(this.selectCartlist.length != 0) {
-                this.$router.push('/order')
+                // this.$router.push('/order')
+                this.alterbuygoods(this.selectCartlist)
+                this.$router.push({
+                    path: '/order',
+                    query: {
+                        selectcartlist: this.selectCartlist
+                    }
+                })
             }
         },
 

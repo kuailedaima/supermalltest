@@ -2,15 +2,30 @@
   <div id="order-bottom-bar">
       <div class="count">共{{totalcount}}件</div>
       <div class="price">合计：￥{{totalprice}}</div>
-      <div class="pay">去支付</div>
+      <div class="pay" @click="clickpay">去支付</div>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 export default {
+    props:{
+        selectCartlist:{
+            type:Array,
+            default(){
+                return {}
+            }
+        }
+    },
+    data(){
+        return {
+            temorder:[]
+        }
+    },
     computed:{
-        ...mapGetters(['selectCartlist']),
+        // ...mapGetters(['selectCartlist']),
+        ...mapGetters(['orderhistory']),
+        ...mapGetters(['shippingaddress']),
         totalcount(){
             let sumcount = 0;
             for(let item of this.selectCartlist) sumcount += item.count
@@ -22,6 +37,46 @@ export default {
               sumprice= sumprice + item.price * item.count
           }
           return sumprice.toFixed(2)
+        }
+    },
+    methods:{
+        getNowTime(tag) {
+          let dateTime
+          let ordernumfirst
+          let yy = new Date().getFullYear()
+          let mm = new Date().getMonth() + 1
+          let dd = new Date().getDate()
+          let hh = new Date().getHours()
+          let mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes()
+              :
+              new Date().getMinutes()
+          let ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds()
+              :
+              new Date().getSeconds()
+          dateTime = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
+          ordernumfirst = yy.toString() +mm.toString() +dd.toString() +
+                          hh.toString() +mf.toString() +ss.toString() ;
+          if(tag == 'data')
+            return dateTime;
+          if(tag == 'num')
+            return ordernumfirst;
+          
+        },
+        clickpay(){
+            let ordernumlast = 1000
+            for(let i=0;i<this.selectCartlist.length;i++){
+                
+                let n = this.orderhistory.length;
+                this.temorder.push(this.selectCartlist[i])
+                this.temorder.push(this.shippingaddress)
+                ordernumlast++;
+                this.temorder.push(this.getNowTime('num') + ordernumlast.toString())
+                this.temorder.push(this.getNowTime('data'))
+                this.orderhistory.push(this.temorder);
+                this.temorder = []
+
+            }
+            console.log(this.orderhistory);
         }
     }
 

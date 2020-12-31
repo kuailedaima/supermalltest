@@ -1,6 +1,7 @@
 <template>
-  <div id="list-item">
-    <div id="order-list-item">
+  <div id="myorderlistitem">
+    <div class="dealinfo">交易成功</div>
+    <div id="myorder-list-item">
     <div class="item-img">
       <img :src="itemInfo.image" alt="商品图片">
     </div>
@@ -13,24 +14,18 @@
       </div>
     </div>
   </div>
-    <after-pay :subcount="itemInfo.count" :subprice="itemInfo.price"/>
+
   </div>
+  
   
       
 </template>
 
 <script>
-import AfterPay from './AfterPay'
 export default {
-  // data(){
-  //   return{
-  //     itemInfo1:[]
-  //   }
-  // },
-    components:{
-        AfterPay
-    },
-  
+    // components:{
+    //     AfterPay
+    // },
     props:{
         itemInfo:{
             type:Object,
@@ -44,20 +39,29 @@ export default {
 </script>
 
 <style scoped>
-  #list-item{
+  #myorderlistitem{
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 10px;
     background-color: #fff;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
   }
-  #order-list-item{
+  #myorder-list-item{
     width: 100%;
     display: flex;
     font-size: 0;
     padding: 5px;
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
+  }
+
+  .dealinfo {
+    clear: both;
+    float: none;
+    /* display: inline; */
+    width: 90%;
+    font-size: 14px;
+    color: red;
+    text-align: right;
     margin: 10px;
-    border-radius: 15px;
   }
 
   .item-title, .item-desc {
@@ -79,7 +83,7 @@ export default {
   }
 
   .item-info {
-    font-size: 17px;
+    font-size: 15px;
     color: #333;
     padding: 5px 10px;
     position: relative;
@@ -90,6 +94,7 @@ export default {
     font-size: 14px;
     color: #666;
     margin-top: 15px;
+    /* font-size: 10px; */
   }
 
   .info-bottom {

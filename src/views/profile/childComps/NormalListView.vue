@@ -27,6 +27,7 @@
 
       click(index){
         if(index == 1) this.$router.push('/myaddress')
+        if(index == 2) this.$router.push('/myorder')
       }
     }
 	}

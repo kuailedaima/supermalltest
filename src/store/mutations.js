@@ -6,20 +6,13 @@ export default{
         payload.checked = false
         state.cartList.push(payload)
     },
+    alterbuygoods(state, goods) {
+        state.buygoods =goods
+    },
     saveAddress(state,address) {
         state.addresslist.push(address)
     },
     alterAddress(state,index) {
-        // state.selectAddresslist[1].id = state.addresslist[index].id;
-        // state.selectAddresslist[1].name = state.addresslist[index].name;
-        // state.selectAddresslist[1].tel = state.addresslist[index].tel;
-        // state.selectAddresslist[1].province = state.addresslist[index].province;
-        // state.selectAddresslist[1].city = state.addresslist[index].city;
-        // state.selectAddresslist[1].county = state.addresslist[index].county;
-        // state.selectAddresslist[1].addressDetail = state.addresslist[index].addressDetail;
-        // state.selectAddresslist[1].areaCode = state.addresslist[index].areaCode;
-        // state.selectAddresslist[1].postalCode = state.addresslist[index].postalCode;
-        // state.selectAddresslist[1].isDefault = state.addresslist[index].isDefaul
         state.selectAddresslist[1] = state.addresslist[index]
     },
     // updateAddress(state,data,index) {
@@ -44,5 +37,24 @@ export default{
                 break;
             }
         }
+    },
+    altersDefault(state) {
+        for(let i = 0;i<state.addresslist.length;i++) {
+            state.addresslist[i].isDefault = false
+        }
+    },
+    saveshippingaddress(state) {
+        for(let i = 0;i<state.addresslist.length;i++){
+            if(state.addresslist[i].isDefault == true){
+                state.shippingaddress = state.addresslist[i];
+                break;
+            }
+        }
+    },
+    altershippingaddress(state,item) {
+        state.shippingaddress = item;
+    },
+    alterisback(state) {
+        state.isback = !state.isback
     }
 }

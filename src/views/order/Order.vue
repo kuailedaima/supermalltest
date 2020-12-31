@@ -8,34 +8,55 @@
       </nav-bar>
       <div class="scroll">
         <scroll class="content" ref="scroll">
-          <order-list/>
+            <address-item @click.native="switchover"/>
+          <order-list :selectCartlist="buygoods"/>
         </scroll>
       </div>
-      <order-bottom-bar/>
+      <order-bottom-bar :selectCartlist="buygoods"/>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar';
 import Scroll from 'components/common/scroll/Scroll'
+import AddressItem from './childComps/AddressItem'
+
 import OrderList from './childComps/OrderList.vue';
 import OrderBottomBar from './childComps/OrderBottomBar.vue';
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations } from 'vuex'
 
 export default {
+    // data(){
+    //     return {
+    //         selectCartlist:[]
+    //     }
+    // },
     components:{
         NavBar,
         Scroll,
         OrderList,
-        OrderBottomBar
+        OrderBottomBar,
+        AddressItem
+    },
+
+    destroyed(){
+        // console.log('执行了销毁');
     },
 
     computed:{
-        ...mapGetters(['selectCartlist'])
+        ...mapGetters(['selectCartlist']),
+        ...mapGetters(['buygoods'])
     },
 
     methods:{
+        ...mapMutations(['alterisback']),
+      switchover(){
+        this.alterisback()
+        this.$destroy()
+        this.$router.push('/myaddress')
+      },
         backClick(){
+            this.$destroy()
             this.$router.back()
         }
     }
@@ -64,5 +85,10 @@ export default {
     left: 0;
     right: 0;
     }
+
+    /* .scroll {
+        margin-top: 10px; */
+        /* clear: both;
+    } */
 
 </style>

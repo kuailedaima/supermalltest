@@ -16,17 +16,40 @@
     </div>
     <div class="bar-item bar-right">
       <div class="cart" @click="addToCart">加入购物车</div>
-      <div class="buy">购买</div>
+      <div class="buy" @click="onTobuy()">购买</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props:{
+    // buygoods:{
+    //     type:Array,
+    //     default(){
+    //         return {}
+    //     }
+    // },
+    onbuy:{
+      type:Function,
+      default:null
+    }
+    },
   methods:{
     addToCart(){
       this.$emit('addCart')
       
+    },
+    onTobuy(){
+      //跳转到确认订单界面
+        //  this.$router.push({
+        //     path: '/order',
+        //     query: {
+        //         selectcartlist: this.buygoods
+        //     }
+        // })
+        // this.$emit('onbuy')
+        this.onbuy()
     }
   }
 

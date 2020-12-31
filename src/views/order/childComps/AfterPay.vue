@@ -50,7 +50,7 @@ export default {
 <style scoped>
   #after-pay{
     margin-left: 40px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
   }
 
   .item {
@@ -99,9 +99,7 @@ export default {
     border: 0;
   }
   .subtotal{
-    display: inline;
-    float: right;
-    height: 25px;
+    height: 30px;
   }
 
   .subcount {

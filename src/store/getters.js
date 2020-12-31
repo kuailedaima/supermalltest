@@ -17,7 +17,19 @@ export default {
     selectAddresslist(state) {
         return state.selectAddresslist
     },
+    buygoods(state) {
+        return state.buygoods
+    },
     id(state) {
         return state.id
+    },
+    shippingaddress(state) {
+        return state.shippingaddress
+    },
+    isback(state) {
+        return state.isback
+    },
+    orderhistory(state) {
+        return state.orderhistory
     }
 }
