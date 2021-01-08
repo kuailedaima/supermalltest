@@ -1,6 +1,6 @@
 <template>
   <div class="normal-list">
-    <div v-for="(item, index) in listData" :key="index" class="item" @click="click(index)">
+    <div v-for="(item, index) in listData" :key="index" class="item" @click="click(item,index)">
         <span class="icon">
           <img :src="iconURL(item)" alt="">
         </span>
@@ -25,9 +25,10 @@
 				return require('assets/img/profile/' + item.icon)
       },
 
-      click(index){
-        if(index == 1) this.$router.push('/myaddress')
-        if(index == 2) this.$router.push('/myorder')
+      click(item,index){
+        if(item.info == '我的地址') this.$router.push('/myaddress')
+        if(item.info == '我的订单') this.$router.push('/myorder')
+        if(item.info == '我的购物车') this.$router.push('/cart')
       }
     }
 	}

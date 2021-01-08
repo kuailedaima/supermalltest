@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations,mapActions} from 'vuex'
+import { Dialog } from 'vant';
 export default {
     props:{
         selectCartlist:{
@@ -24,8 +25,10 @@ export default {
     },
     computed:{
         // ...mapGetters(['selectCartlist']),
+        // ...mapGetters(['cartList']),
         ...mapGetters(['orderhistory']),
         ...mapGetters(['shippingaddress']),
+        ...mapGetters(['buyjumptag']),
         totalcount(){
             let sumcount = 0;
             for(let item of this.selectCartlist) sumcount += item.count
@@ -39,7 +42,10 @@ export default {
           return sumprice.toFixed(2)
         }
     },
+
     methods:{
+        ...mapMutations(['deleteselect']),
+        // ...mapActions(['deleteselect']),
         getNowTime(tag) {
           let dateTime
           let ordernumfirst
@@ -62,6 +68,7 @@ export default {
             return ordernumfirst;
           
         },
+        //点击去支付
         clickpay(){
             let ordernumlast = 1000
             for(let i=0;i<this.selectCartlist.length;i++){
@@ -74,10 +81,21 @@ export default {
                 this.temorder.push(this.getNowTime('data'))
                 this.orderhistory.push(this.temorder);
                 this.temorder = []
-
             }
+
+            Dialog.alert({
+                message: '支付成功',
+                theme: 'round-button',
+            }).then(() => {
+                if(this.buyjumptag == true) {
+                    this.deleteselect();
+                }
+                  
+                this.$router.back()
+                // on close
+            });
             console.log(this.orderhistory);
-        }
+        },
     }
 
 }

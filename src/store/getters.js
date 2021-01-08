@@ -31,5 +31,12 @@ export default {
     },
     orderhistory(state) {
         return state.orderhistory
+    },
+    buyjumptag(state) {
+        return state.buyjumptag
+    },
+    //组件是否显示
+    isdisplay(state) {
+        return state.isdisplay
     }
 }

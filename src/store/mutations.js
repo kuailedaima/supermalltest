@@ -6,8 +6,9 @@ export default{
         payload.checked = false
         state.cartList.push(payload)
     },
-    alterbuygoods(state, goods) {
-        state.buygoods =goods
+    alterbuygoods(state, goodstag) {
+        state.buygoods =goodstag[0]
+        state.buyjumptag = goodstag[1]
     },
     saveAddress(state,address) {
         state.addresslist.push(address)
@@ -15,18 +16,7 @@ export default{
     alterAddress(state,index) {
         state.selectAddresslist[1] = state.addresslist[index]
     },
-    // updateAddress(state,data,index) {
-    //     state.addresslist[index].id = data.id;
-    //     state.addresslist[index].name = data.name;
-    //     state.addresslist[index].tel = data.tel;
-    //     state.addresslist[index].province = data.province;
-    //     state.addresslist[index].city = data.city;
-    //     state.addresslist[index].county = data.county;
-    //     state.addresslist[index].addressDetail = data.addressDetail;
-    //     state.addresslist[index].areaCode = data.areaCode;
-    //     state.addresslist[index].postalCode = data.postalCode;
-    //     state.addresslist[index].isDefault = data.isDefault;
-    // }
+    
     idincrease(state) {
         state.id ++
     },
@@ -56,5 +46,16 @@ export default{
     },
     alterisback(state) {
         state.isback = !state.isback
+    },
+    deleteselect(state) {
+        for(let i =0;i<=state.selectCartlist.length;i++) {
+            for(let j=0; j<state.cartList.length; j++) {
+                if(state.cartList[j] == state.selectCartlist[i]){
+                    state.cartList.splice(j, 1);
+                    break;
+                }
+            }
+        }
+        state.selectCartlist.length = 0
     }
 }

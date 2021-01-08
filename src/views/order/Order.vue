@@ -12,7 +12,7 @@
           <order-list :selectCartlist="buygoods"/>
         </scroll>
       </div>
-      <order-bottom-bar :selectCartlist="buygoods"/>
+      <order-bottom-bar :selectCartlist="buygoods" v-if="isdisplay.orderbottombar"/>
   </div>
 </template>
 
@@ -45,7 +45,8 @@ export default {
 
     computed:{
         ...mapGetters(['selectCartlist']),
-        ...mapGetters(['buygoods'])
+        ...mapGetters(['buygoods']),
+        ...mapGetters(['isdisplay'])
     },
 
     methods:{

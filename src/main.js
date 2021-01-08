@@ -9,6 +9,8 @@ import VueLazyLoad from 'vue-lazyload'
 import toast from 'components/common/toast'
 import { AddressList } from 'vant';
 import { AddressEdit } from 'vant';
+import { Dialog } from 'vant';
+import { ActionSheet } from 'vant';
 
 Vue.config.productionTip = false
 
@@ -29,6 +31,12 @@ Vue.use(AddressList)
 
 //使用地址编辑插件
 Vue.use(AddressEdit);
+
+//注册弹出框组件
+Vue.use(Dialog);
+
+//注册动作面板
+Vue.use(ActionSheet);
 
 new Vue({
   render: h => h(App),

@@ -103,7 +103,11 @@ export default {
             if(i == 0) this.$toast.show('购物车为空',2000)
             if(this.selectCartlist.length != 0) {
                 // this.$router.push('/order')
-                this.alterbuygoods(this.selectCartlist)
+                const productstag = []
+                productstag[0] = this.selectCartlist;
+                productstag[1] = true
+                // this.alterbuygoods(this.selectCartlist)
+                this.alterbuygoods(productstag)
                 this.$router.push({
                     path: '/order',
                     query: {

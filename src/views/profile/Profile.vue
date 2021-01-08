@@ -27,8 +27,8 @@ export default {
     	return {
 		    orderList: [
 			    {icon: 'message.svg', info: '我的消息'},
-			    {icon: 'pointer.svg', info: '我的地址'},
-			    {icon: 'vip.svg', info: '我的订单'},
+			    {icon: 'myaddress.svg', info: '我的地址'},
+			    {icon: 'myorder.svg', info: '我的订单'},
 		    ],
 		    serviceList: [
 			    {icon: 'cart.svg', info: '我的购物车'},

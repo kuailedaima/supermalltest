@@ -48,7 +48,14 @@ const state = {
     //订单存储
     orderhistory:[],
     //订单编号
-    ordernum:null
+    ordernum:null,
+    //跳转标志,true为从购物车中选中购买，false为直接从商品详情页购买
+    buyjumptag:false,
+    //组件是否显示
+    isdisplay:{
+        maintabbar:true,
+        orderbottombar:true
+    }
     
 }
 

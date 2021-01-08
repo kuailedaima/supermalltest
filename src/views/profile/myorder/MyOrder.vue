@@ -6,7 +6,7 @@
         </div>
         <div slot="center">我的订单</div>
     </nav-bar>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <myorder-list/>
     </scroll>
     
@@ -23,6 +23,10 @@ export default {
     NavBar,
     MyorderList,
     Scroll
+  },
+
+  activated(){
+    this.$refs.scroll.refresh()
   },
   
   methods:{

@@ -4,19 +4,23 @@
       <router-view :key="$route.fullPath"></router-view>
     </keep-alive>
     
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar v-if="isdisplay.maintabbar"></main-tab-bar>
   </div>
 </template>
 
 <script>
 // import MainTabBar from './components/content/mainTabbar/MainTabBar'
 import MainTabBar from 'components/content/mainTabbar/MainTabBar'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'App',
   components: {
     MainTabBar
-  }
+  },
+  computed:{
+      ...mapGetters(['isdisplay'])
+  },
 }
 </script>
 

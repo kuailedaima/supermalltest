@@ -210,7 +210,11 @@ export default {
 
          products.push(product)
         //  this.buygoods = products
-         this.alterbuygoods(products)
+        const productstag = []
+        // let judgetag = false
+        productstag[0] = products;
+        productstag[1] = false
+         this.alterbuygoods(productstag)
 
         //  this.buygoods[0] = product
          console.log(products);

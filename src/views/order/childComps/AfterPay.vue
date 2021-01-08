@@ -2,19 +2,24 @@
   <div id="after-pay">
     <div class="item">
       <div class="itemtitle">公益宝贝</div>
-      <div class="iteminfo2"><div class="content">本次交易将用0.1元捐给给公益组织</div></div>
+      <!-- <div class="iteminfo2"><div class="content">本次交易将用0.1元捐给给公益组织</div></div> -->
+      <div class="iteminfo2">
+        <div class="content" >
+        <action-sheet :actions="actions0"/>
+        </div>
+        </div>
     </div>
     <div class="item">
       <div class="itemtitle">运费险</div>
-      <div class="iteminfo">由卖家赠送</div>
+      <div class="iteminfo"><action-sheet :actions="actions1"/></div>
     </div>
     <div class="item">
       <div class="itemtitle">配送方式</div>
-      <div class="iteminfo">普通配送</div>
+      <div class="iteminfo"><action-sheet :actions="actions2"/></div>
     </div>
     <div class="item">
       <div class="itemtitle">售后服务</div>
-      <div class="iteminfo">七天无理由退货</div>
+      <div class="iteminfo"><action-sheet :actions="actions3"/></div>
     </div>
     <div class="item">
       <div class="itemtitle">订单备注</div>
@@ -28,7 +33,19 @@
 </template>
 
 <script>
+import ActionSheet from 'components/common/actionsheet/ActionSheet'
 export default {
+  components:{
+    ActionSheet
+  },
+  data(){
+    return {
+      actions0:[{name: '本次交易将用0.1元捐给给公益组织'},{name: '选项二'},{name: '选项3'}],
+      actions1:[{name:'由卖家赠送'}],
+      actions2:[{name:'普通配送'}],
+      actions3:[{name:'七天无理由退货'}],
+    }
+  },
   props:{
     subcount:Number,
     subprice:{
